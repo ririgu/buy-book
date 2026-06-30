@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>효신책마루도서관 | 희망도서 신청</title>
+
+    <meta name="description"
+        content="효신책마루도서관 희망도서 신청 시스템">
+
+    <meta name="theme-color"
+        content="#4F8EF7">
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <span class="hero-badge">
+
+                📚 효신책마루도서관
+
+            </span>
+
+            <h1>
+
+                희망도서 신청
+
+            </h1>
+
+            <p>
+
+                읽고 싶은 책이 있나요?<br>
+
+                여러분의 신청이 더욱 풍성한 도서관을 만듭니다.
+
+            </p>
+
+            <div class="hero-notice">
+
+                ⭐ 신청한 도서는
+                <strong>도서관 운영위원회 심의</strong> 후
+                구매 여부가 결정됩니다.
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img
+                src="hero-students.png"
+                alt="희망도서를 신청하는 학생">
+
+        </div>
+
+    </div>
+
+</header>
+
+<main>
+
+<section class="progress-section">
+
+    <div class="progress-header">
+
+        <span>
+
+            신청서 작성 진행률
+
+        </span>
+
+        <span id="progressText">
+
+            0%
+
+        </span>
+
+    </div>
+
+    <div class="progress-bar"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+
+        </div>
+
+    </div>
+
+</section>
+
+<form
+    id="requestForm"
+    autocomplete="off"
+    novalidate>
+
+<input
+    type="hidden"
+    id="requestId"
+    name="requestId">
+
+<input
+    type="hidden"
+    id="submitTime"
+    name="submitTime">
+
+<!-- ================================================= -->
+<!-- 신청자 정보 -->
+<!-- ================================================= -->
+
+<section class="card">
+
+<div class="card-title">
+
+🙋 신청자 정보
+
+</div>
+
+<p class="section-guide">
+
+희망도서를 신청하는 학생의 정보를 입력해주세요.
+
+</p>
+
+<div class="form-grid two">
+
+<div class="form-group">
+
+<label for="requestDate">
+
+📅 신청 날짜
+
+</label>
+
+<input
+
+id="requestDate"
+
+name="requestDate"
+
+type="date"
+
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label for="studentName">
+
+👤 신청자 성명
+
+</label>
+
+<input
+
+id="studentName"
+
+name="studentName"
+
+type="text"
+
+autocomplete="name"
+
+placeholder="이름을 입력하세요."
+
+required>
+
+</div>
+
+</div>
+
+<div class="form-grid three">
+
+<div class="form-group">
+
+<label for="grade">
+
+🏫 학년
+
+</label>
+
+<select
+
+id="grade"
+
+name="grade"
+
+required>
+
+<option value="">
+
+선택
+
+</option>
+
+<option>1학년</option>
+
+<option>2학년</option>
+
+<option>3학년</option>
+
+<option>4학년</option>
+
+<option>5학년</option>
+
+<option>6학년</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label for="classroom">
+
+🏫 반
+
+</label>
+
+<select
+
+id="classroom"
+
+name="classroom"
+
+required>
+
+<option value="">
+
+선택
+
+</option>
+
+<option>1반</option>
+<option>2반</option>
+<option>3반</option>
+<option>4반</option>
+<option>5반</option>
+<option>6반</option>
+<option>7반</option>
+<option>8반</option>
+<option>9반</option>
+<option>10반</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label for="number">
+
+🔢 번호
+
+</label>
+
+<input
+
+id="number"
+
+name="number"
+
+type="number"
+
+min="1"
+
+max="40"
+
+step="1"
+
+inputmode="numeric"
+
+placeholder="번호"
+
+required>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================================================= -->
+<!-- 희망도서 정보 -->
+<!-- ================================================= -->
+
+<section class="card">
+
+<div class="card-title">
+
+📖 희망도서 정보
+
+</div>
+
+<p class="section-guide">
+
+도서명은 꼭 입력해주세요.
+저자, 출판사, 가격은 모를 경우 비워두셔도 됩니다.
+
+</p>
+
+<div class="form-group">
+
+<label for="bookTitle">
+
+📚 도서명
+<span class="required">*</span>
+
+</label>
+
+<input
+
+id="bookTitle"
+
+name="bookTitle"
+
+type="text"
+
+placeholder="예) 흔한남매 과학 탐험대"
+
+required>
+</div>
+
+<div class="form-grid two">
+
+    <!-- 저자 -->
+
+    <div class="form-group">
+
+        <label for="author">
+
+            ✍️ 저자명
+            <small>(지은이 / 그린이)</small>
+
+        </label>
+
+        <input
+
+            id="author"
+
+            name="author"
+
+            type="text"
+
+            placeholder="모르면 비워두어도 됩니다."
+
+            autocomplete="off">
+
+    </div>
+
+
+
+    <!-- 출판사 -->
+
+    <div class="form-group">
+
+        <label for="publisher">
+
+            🏢 출판사
+
+        </label>
+
+        <input
+
+            id="publisher"
+
+            name="publisher"
+
+            type="text"
+
+            placeholder="예) 미래엔아이세움"
+
+            autocomplete="off">
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="form-grid two">
+
+    <!-- 출판연도 -->
+
+    <div class="form-group">
+
+        <label for="publishYear">
+
+            📅 출판연도
+
+        </label>
+
+        <input
+
+            id="publishYear"
+
+            name="publishYear"
+
+            type="number"
+
+            min="1900"
+
+            max="2100"
+
+            inputmode="numeric"
+
+            placeholder="예) 2025">
+
+    </div>
+
+
+
+    <!-- 가격 -->
+
+    <div class="form-group">
+
+        <label for="price">
+
+            💰 가격(원)
+
+        </label>
+
+        <input
+
+            id="price"
+
+            name="price"
+
+            type="number"
+
+            min="0"
+
+            max="30000"
+
+            inputmode="numeric"
+
+            placeholder="예) 18000">
+
+        <div
+
+            id="priceMessage"
+
+            class="helper-message"
+
+            aria-live="polite">
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================================================= -->
+<!-- 신청 사유 -->
+<!-- ================================================= -->
+
+<section class="card">
+
+    <div class="card-title">
+
+        💡 신청 사유
+
+    </div>
+
+    <p class="section-guide">
+
+        왜 이 책을 읽고 싶은지 간단하게 적어 주세요.
+
+    </p>
+
+    <div class="form-group">
+
+        <label for="reason">
+
+            신청 사유
+            <span class="required">*</span>
+
+        </label>
+
+        <textarea
+
+            id="reason"
+
+            name="reason"
+
+            rows="6"
+
+            maxlength="300"
+
+            aria-describedby="textCounter"
+
+            placeholder="예) 친구가 추천해 주었고, 과학에 관심이 많아 읽어보고 싶습니다."
+
+            required></textarea>
+
+        <div class="textarea-footer">
+
+            <span>
+
+                최대 300자
+
+            </span>
+
+            <span id="textCounter">
+
+                0 / 300
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ================================================= -->
+<!-- 알게 된 경로 -->
+<!-- ================================================= -->
+
+<section class="card">
+
+    <div class="card-title">
+
+        🌱 이 책을 어떻게 알게 되었나요?
+
+    </div>
+
+    <p class="section-guide">
+
+        선택사항입니다.
+
+    </p>
+
+    <div class="radio-group">
+
+        <label class="radio-card">
+
+            <input
+                type="radio"
+                name="source"
+                value="친구 추천">
+
+            👧 친구 추천
+
+        </label>
+
+        <label class="radio-card">
+
+            <input
+                type="radio"
+                name="source"
+                value="선생님 추천">
+
+            👩‍🏫 선생님 추천
+
+        </label>
+
+        <label class="radio-card">
+
+            <input
+                type="radio"
+                name="source"
+                value="도서관">
+
+            📚 도서관
+
+        </label>
+
+        <label class="radio-card">
+
+            <input
+                type="radio"
+                name="source"
+                value="인터넷">
+
+            💻 인터넷
+
+        </label>
+
+        <label class="radio-card">
+
+            <input
+                type="radio"
+                name="source"
+                value="유튜브">
+
+            ▶️ 유튜브
+
+        </label>
+
+        <label class="radio-card">
+
+            <input
+                type="radio"
+                name="source"
+                value="기타">
+
+            ✨ 기타
+
+        </label>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ================================================= -->
+<!-- 도서관에 바라는 점 -->
+<!-- ================================================= -->
+
+<section class="card">
+
+    <div class="card-title">
+
+        💬 도서관에 바라는 점
+
+    </div>
+
+    <p class="section-guide">
+
+        선택사항입니다. 자유롭게 의견을 남겨주세요.
+
+    </p>
+
+    <div class="form-group">
+
+        <label for="opinion">
+
+            여러분의 의견
+
+        </label>
+
+        <textarea
+
+            id="opinion"
+
+            name="opinion"
+
+            rows="4"
+
+            maxlength="100"
+
+            placeholder="예) 신간이 더 빨리 들어왔으면 좋겠어요."></textarea>
+
+        <div class="textarea-footer">
+
+            <span>
+
+                선택 입력
+
+            </span>
+
+            <span id="opinionCounter">
+
+                0 / 100
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================================================= -->
+<!-- 신청 전 꼭 확인해 주세요 -->
+<!-- ================================================= -->
+
+<section class="notice-card">
+
+    <h2>📌 신청 전 꼭 확인해 주세요!</h2>
+
+    <ul>
+
+        <li>
+            신청한 도서는 <strong>도서관 운영위원회 심의</strong>를 거쳐 구매 여부가 결정됩니다.
+        </li>
+
+        <li>
+            학생 1인당 <strong>최대 3권</strong>까지 신청할 수 있습니다.
+        </li>
+
+        <li>
+            도서 <strong>1권 가격은 30,000원 이하</strong>만 신청 가능합니다.
+        </li>
+
+        <li>
+            수험서, 문제집, 참고서, 학교도서관 자료로 적합하지 않은 도서는 제외될 수 있습니다.
+        </li>
+
+        <li>
+            이미 도서관에 소장 중인 자료는 구입 대상에서 제외될 수 있습니다.
+        </li>
+
+    </ul>
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- 버튼 -->
+<!-- ================================================= -->
+
+<section class="button-section">
+
+    <button
+        type="button"
+        id="resetButton"
+        class="btn-secondary">
+
+        다시 작성
+
+    </button>
+
+    <button
+        type="submit"
+        id="submitButton"
+        class="btn-primary"
+        data-loading="false">
+
+        <span class="button-text">
+
+            📚 희망도서 신청하기
+
+        </span>
+
+        <span
+            class="loading-spinner"
+            aria-hidden="true">
+
+        </span>
+
+    </button>
+
+</section>
+
+</form>
+
+</main>
+
+
+
+<!-- ================================================= -->
+<!-- Footer -->
+<!-- ================================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        📚 효신책마루도서관
+
+    </div>
+
+    <p>
+
+        학생들의 꿈과 성장을 함께하는 학교도서관
+
+    </p>
+
+    <small>
+
+        © 2026 HyoShin Library
+
+    </small>
+
+</footer>
+
+
+
+<!-- ================================================= -->
+<!-- 신청 완료 모달 -->
+<!-- ================================================= -->
+
+<div
+    id="successModal"
+    class="modal"
+    role="dialog"
+    aria-modal="true">
+
+    <div class="modal-content">
+
+        <div class="modal-icon">
+
+            🎉
+
+        </div>
+
+        <h2>
+
+            신청이 완료되었습니다.
+
+        </h2>
+
+        <p>
+
+            희망도서 신청이 정상적으로 접수되었습니다.
+
+            <br><br>
+
+            도서관 운영위원회 심의를 거쳐
+
+            구매 여부를 결정합니다.
+
+        </p>
+
+        <button
+
+            id="successConfirm"
+
+            class="btn-primary">
+
+            확인
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- 다시 작성 확인 -->
+<!-- ================================================= -->
+
+<div
+
+    id="resetModal"
+
+    class="modal"
+
+    role="dialog"
+
+    aria-modal="true">
+
+    <div class="modal-content">
+
+        <div class="modal-icon">
+
+            📝
+
+        </div>
+
+        <h2>
+
+            다시 작성하시겠습니까?
+
+        </h2>
+
+        <p>
+
+            작성 중인 내용이 모두 삭제됩니다.
+
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+
+                id="cancelReset"
+
+                class="btn-secondary">
+
+                취소
+
+            </button>
+
+            <button
+
+                id="confirmReset"
+
+                class="btn-primary">
+
+                확인
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- Toast -->
+<!-- ================================================= -->
+
+<div
+
+    id="toast"
+
+    class="toast"
+
+    aria-live="polite">
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</div>
+
+</body>
+
+</html>
