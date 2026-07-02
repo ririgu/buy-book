@@ -274,7 +274,7 @@ function loadDraft(){
     const data = JSON.parse(draft);
 
     Object.keys(data).forEach(key=>{
-
+ if(key === "requestDate") return;
         const element = $(key);
 
         if(element){
